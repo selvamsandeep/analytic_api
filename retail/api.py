@@ -261,10 +261,10 @@ class MarketBasketAPI(MethodView):
         #print (data)
         try:
             print ('in')  
-            print(data["item_id"])          
+            #print(data["item_id"])          
             #item = self.top20_items[1]
             item = self.top20_items[int(data["item_id"])]
-            print(item)            
+            #print(item)            
             #item = self.top20_items[int(data["item_id"])]           
             result = get_items_purchased_along(item, X, code2name, item2idx, idx2item)           
         except Exception as e:
