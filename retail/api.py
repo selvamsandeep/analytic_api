@@ -28,7 +28,7 @@ from retail.sales_forecast import get_next_sevedays_pred_data, get_current_next_
 #from retail.update_data_schedule import run_main
 #run_main()
 
-PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'retail_data/')
 STORE='u100062'
 
 #salees visualize page data 

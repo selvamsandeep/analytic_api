@@ -8,7 +8,7 @@ import os
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
 #STORE_DB = 'u100068'
-PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'retail_data/')
 
 def timeit(method):
     def timed(*args, **kw):

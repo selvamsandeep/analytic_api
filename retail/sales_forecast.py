@@ -12,7 +12,7 @@ import pickle
 
 
 #PATH = 'data/'
-PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'retail_data/')
 
 def get_daily_sales_data(store='u100062'):
     

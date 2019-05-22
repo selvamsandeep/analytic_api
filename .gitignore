@@ -1,5 +1,5 @@
-**/data
-**/data_dump/
+**/distri_data
+**/retail_data/
 mongo_data/
 # Byte-compiled / optimized / DLL files
 __pycache__/

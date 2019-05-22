@@ -5,7 +5,7 @@ import pickle
 import operator
 
 #PATH = 'data/'
-PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'retail_data/')
 
 def create_itemcodes_list(store='u100062'):
     

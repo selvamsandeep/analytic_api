@@ -6,9 +6,9 @@ import pickle
 
 
 #DATA_DIR = 'data/'
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
-#OUT_DIR = 'data_dump/'
-OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data_dump/')
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'distri_data/')
+#DATA_DIR = 'data_dump/'
+#DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data_dump/')
 #print(os.path.dirname(os.path.abspath(__file__)))
 #print(DATA_DIR)
 #print(os.listdir(DATA_DIR))
@@ -49,7 +49,7 @@ def create_party_index_dic(party_list):
 
 def create_item_party_qty_matrix():
     
-    cc_matrix = OUT_DIR + 'cc_matrix.npy'
+    cc_matrix = DATA_DIR + 'cc_matrix.npy'
     
     if not os.path.exists(cc_matrix):  
         itemwise_df, item_list, party_list = creat_itemiwse_dataframe()
@@ -64,24 +64,24 @@ def create_item_party_qty_matrix():
             X[item2idx[row['Item Name']]][party2idx[row['Party Name']]][row['dayofyear']] += row['Billed Quantity']
             
         np.save(cc_matrix, X)
-        with open(OUT_DIR + 'item2idx.pkl', 'wb') as handle:
+        with open(DATA_DIR + 'item2idx.pkl', 'wb') as handle:
              pickle.dump(item2idx, handle, protocol=pickle.HIGHEST_PROTOCOL)
-        with open(OUT_DIR + 'idx2item.pkl', 'wb') as handle:
+        with open(DATA_DIR + 'idx2item.pkl', 'wb') as handle:
              pickle.dump(idx2item, handle, protocol=pickle.HIGHEST_PROTOCOL)  
-        with open(OUT_DIR + 'party2idx.pkl', 'wb') as handle:
+        with open(DATA_DIR + 'party2idx.pkl', 'wb') as handle:
              pickle.dump(party2idx, handle, protocol=pickle.HIGHEST_PROTOCOL)     
-        with open(OUT_DIR + 'idx2party.pkl', 'wb') as handle:
+        with open(DATA_DIR + 'idx2party.pkl', 'wb') as handle:
              pickle.dump(idx2party, handle, protocol=pickle.HIGHEST_PROTOCOL)        
     
     else:
         X = np.load(cc_matrix)
-        with open(OUT_DIR + 'item2idx.pkl', 'rb') as handle:
+        with open(DATA_DIR + 'item2idx.pkl', 'rb') as handle:
             item2idx = pickle.load(handle)
-        with open(OUT_DIR + 'idx2item.pkl', 'rb') as handle:
+        with open(DATA_DIR + 'idx2item.pkl', 'rb') as handle:
             idx2item = pickle.load(handle) 
-        with open(OUT_DIR + 'party2idx.pkl', 'rb') as handle:
+        with open(DATA_DIR + 'party2idx.pkl', 'rb') as handle:
             party2idx = pickle.load(handle)
-        with open(OUT_DIR + 'idx2party.pkl', 'rb') as handle:
+        with open(DATA_DIR + 'idx2party.pkl', 'rb') as handle:
             idx2party = pickle.load(handle)     
     
     return X, item2idx, idx2item, party2idx, idx2party

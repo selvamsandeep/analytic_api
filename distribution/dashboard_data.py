@@ -4,7 +4,7 @@ import pandas as pd
 
 import os
 #DATA_DIR = 'data/'
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'distri_data/')
 
 def create_dataframe():
     sales_df = pd.read_excel(DATA_DIR + 'Sales.xls', parse_dates=['Date'])

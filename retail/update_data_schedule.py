@@ -10,7 +10,7 @@ from retail.market_basket_analysis import create_cooccurance_matirx
 
 STORE_DB = 'u100062'
 #PATH = 'data/'
-PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'retail_data/')
 
 def download_data():    
     

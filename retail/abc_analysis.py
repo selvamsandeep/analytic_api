@@ -4,7 +4,7 @@ import os
 import warnings
 
 #PATH = 'data/'
-PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data/')
+PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'retail_data/')
 
 def load_n_process_salesdetail_data(store='u100062'):
     
