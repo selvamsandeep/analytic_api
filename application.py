@@ -4,7 +4,9 @@ from subprocess import call
 
 from settings import MONGODB_HOST
 
+
 db = MongoEngine()
+
 
 def create_app(**config_overrides):
     app = Flask(__name__)
@@ -31,3 +33,11 @@ def create_app(**config_overrides):
     
 
     return app
+
+
+def fixtures(test_db, collection, fixture):
+    command = "mongoimport -h %s \
+        -d %s \
+        -c %s \
+        < %s" % (MONGODB_HOST, test_db, collection, fixture)
+    call(command,  shell=True)

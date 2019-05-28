@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from user.models import User, Access
-
+from user.decorators import user_required
 
 class UserAPI(MethodView):
 
@@ -39,6 +39,7 @@ class UserAPI(MethodView):
 
 class AccessAPI(MethodView):
 
+    
     def __init__(self):
         if not request.json:
             abort(400)
@@ -73,9 +74,43 @@ class AccessAPI(MethodView):
                     expires=expires
                 ).save()
                 expires_3339 = expires.isoformat("T") + "Z"
-                return jsonify({'token': token, 'domain':user.domain, 'expires': expires_3339}), 200
+                
+                usr = {'username': user.user_id, 'domain':user.domain, 'expires': expires_3339}
+                tkn =  {'token': token}
+                return jsonify({'usr': usr, 'tkn': tkn}), 200
             else:
                 error = {
                     "code": "INCORRECT_CREDENTIALS"
                 }
                 return jsonify({'error': error}), 403
+
+class UserDetailsAPI(MethodView):
+
+    #decorators = [user_required]
+
+    def __init__(self):       
+        if (request.method != 'GET') and not request.json:
+            abort(400)    
+    
+    def get(self):
+
+        #user_id = request.headers.get('X-USER-ID')
+        user_token = request.headers.get('X-USER-TOKEN')
+        
+        if user_token is None:
+            error = {
+                "code": "MISSING_USER_ID_TOKEN"
+            }
+            return jsonify({'error': error}), 403
+
+        access = Access.objects.filter(token=user_token).first()
+        if not access:
+            return jsonify({}), 403
+
+        
+        user = User.objects.filter(user_id= access.user.user_id).first()
+        
+        usr = {'username': user.user_id, 'domain':user.domain}
+
+        return jsonify({'usr': usr}), 201
+
